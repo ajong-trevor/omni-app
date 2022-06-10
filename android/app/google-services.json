@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "990910574596",
+    "firebase_url": "https://omni-tour-default-rtdb.firebaseio.com",
+    "project_id": "omni-tour",
+    "storage_bucket": "omni-tour.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:990910574596:android:1f52e62443c12c2536c551",
+        "android_client_info": {
+          "package_name": "com.cotdev.omni"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "990910574596-4ebi95oh3bh2i9oru111tfhnbdeoqede.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcBlClevSHjdxIsrZjgfMBLcSDD3YCmuc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "990910574596-4ebi95oh3bh2i9oru111tfhnbdeoqede.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
