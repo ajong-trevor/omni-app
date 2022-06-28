@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
           value: ToursProvider(),
         ),
       ],
-      child: MaterialApp(
+      child: GetMaterialApp(
         title: 'Omni',
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,

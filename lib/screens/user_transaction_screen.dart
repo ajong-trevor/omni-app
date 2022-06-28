@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
+// import 'package:provider/provider.dart';
 
-import '../providers/tours_provider.dart';
+// import '../providers/tours_provider.dart';
+import '../helpers/getx_switch_state.dart';
 
 class UserTransactionScreen extends StatefulWidget {
   static const routName = '/user-transaction';
@@ -12,6 +14,8 @@ class UserTransactionScreen extends StatefulWidget {
 
 class _UserTransactionScreenState extends State<UserTransactionScreen> {
   bool _makePayment = false;
+
+  final GetXSwitchState getXSwitchState = Get.put(GetXSwitchState());
 
   @override
   Widget build(BuildContext context) {
@@ -35,18 +39,15 @@ class _UserTransactionScreenState extends State<UserTransactionScreen> {
               const SizedBox(
                 height: 10.0,
               ),
-              Switch(
-                activeTrackColor: Theme.of(context).primaryColor,
-                value: _makePayment,
-                onChanged: (value) {
-                  setState(() {
-                    _makePayment = value;
-                    Provider.of<ToursProvider>(context, listen: false)
-                        .togglePayment();
-                    print(_makePayment);
-                  });
-                },
-              ),
+              GetBuilder<GetXSwitchState>(builder: (_) {
+                return Switch(
+                  activeTrackColor: Theme.of(context).primaryColor,
+                  value: getXSwitchState.isSwitched,
+                  onChanged: (value) {
+                    getXSwitchState.changeSwitchState(value);
+                  },
+                );
+              })
             ]),
       ),
     );

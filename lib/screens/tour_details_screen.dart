@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
+import '../helpers/getx_switch_state.dart';
 import '../screens/tour_screen.dart';
 import '../providers/tours_provider.dart';
 import '../screens/user_profile_screen.dart';
@@ -14,9 +16,10 @@ class TourDetailsScreen extends StatefulWidget {
 }
 
 class _TourDetailsScreenState extends State<TourDetailsScreen> {
-  var _isInit = true;
+  // var _isInit = true;
   var _isLoading = false;
   var _isLogin = false;
+  final GetXSwitchState getXSwitchState = Get.put(GetXSwitchState());
 
   void _openTour(BuildContext context, id) {
     Navigator.of(context).pushNamed(
@@ -62,6 +65,58 @@ class _TourDetailsScreenState extends State<TourDetailsScreen> {
     final selectedTour =
         tourData.items.firstWhere((tourItem) => tourItem.id == tourId);
 
+    final alertBox = AlertDialog(
+      title: const Text("You're logged out!"),
+      content: const Text(
+        'Kindly login to start the tour',
+      ),
+      actions: [
+        FlatButton(
+          onPressed: () {
+            Navigator.of(context).pop(false);
+          },
+          child: Text(
+            'No',
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
+        ),
+        FlatButton(
+          onPressed: () {
+            Navigator.of(context).pop(true);
+            Navigator.of(context).pushNamed(UserProfileScreen.routeName);
+          },
+          child: Text(
+            'Yes',
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
+        ),
+      ],
+    );
+
+    final messageBox = AlertDialog(
+      title: const Text("Free trial over!"),
+      content: const Text(
+        'You have exhausted your free trial, make payment and get full access.',
+      ),
+      actions: [
+        FlatButton(
+          onPressed: () {
+            Navigator.of(context).pop(true);
+          },
+          child: Text(
+            'Okay',
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
+        ),
+      ],
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text(selectedTour.tourTitle),
@@ -83,8 +138,8 @@ class _TourDetailsScreenState extends State<TourDetailsScreen> {
                           fit: BoxFit.cover,
                         ),
                         borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(40.0),
-                          bottomRight: Radius.circular(40.0),
+                          bottomLeft: Radius.circular(30.0),
+                          bottomRight: Radius.circular(30.0),
                         )),
                   ),
                   Container(
@@ -127,38 +182,14 @@ class _TourDetailsScreenState extends State<TourDetailsScreen> {
                                 if (_isLogin == false) {
                                   showDialog(
                                     context: context,
-                                    builder: (ctx) => AlertDialog(
-                                      title: const Text("You're logged out!"),
-                                      content: const Text(
-                                        'Please kindly login to start the tour',
-                                      ),
-                                      actions: [
-                                        FlatButton(
-                                          onPressed: () {
-                                            Navigator.of(ctx).pop(false);
-                                          },
-                                          child: Text(
-                                            'No',
-                                            style: TextStyle(
-                                              color: Theme.of(ctx).primaryColor,
-                                            ),
-                                          ),
-                                        ),
-                                        FlatButton(
-                                          onPressed: () {
-                                            Navigator.of(ctx).pop(true);
-                                            Navigator.of(ctx).pushNamed(
-                                                UserProfileScreen.routeName);
-                                          },
-                                          child: Text(
-                                            'Yes',
-                                            style: TextStyle(
-                                              color: Theme.of(ctx).primaryColor,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                    builder: (ctx) => alertBox,
+                                  );
+                                } else if ((getXSwitchState.isFreeTrialOver ==
+                                        true) &&
+                                    (getXSwitchState.isSwitched == false)) {
+                                  showDialog(
+                                    context: context,
+                                    builder: (ctx) => messageBox,
                                   );
                                 } else {
                                   _openTour(context, selectedTour.id);
@@ -222,38 +253,13 @@ class _TourDetailsScreenState extends State<TourDetailsScreen> {
                         if (_isLogin == false) {
                           showDialog(
                             context: context,
-                            builder: (ctx) => AlertDialog(
-                              title: const Text("You're logged out!"),
-                              content: const Text(
-                                'Please kindly login to start the tour',
-                              ),
-                              actions: [
-                                FlatButton(
-                                  onPressed: () {
-                                    Navigator.of(ctx).pop(false);
-                                  },
-                                  child: Text(
-                                    'No',
-                                    style: TextStyle(
-                                      color: Theme.of(ctx).primaryColor,
-                                    ),
-                                  ),
-                                ),
-                                FlatButton(
-                                  onPressed: () {
-                                    Navigator.of(ctx).pop(true);
-                                    Navigator.of(ctx)
-                                        .pushNamed(UserProfileScreen.routeName);
-                                  },
-                                  child: Text(
-                                    'Yes',
-                                    style: TextStyle(
-                                      color: Theme.of(ctx).primaryColor,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+                            builder: (ctx) => alertBox,
+                          );
+                        } else if ((getXSwitchState.isFreeTrialOver == true) &&
+                            (getXSwitchState.isSwitched == false)) {
+                          showDialog(
+                            context: context,
+                            builder: (ctx) => messageBox,
                           );
                         } else {
                           _openTour(context, selectedTour.id);

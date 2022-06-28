@@ -45,10 +45,10 @@ class _UserLoginState extends State<UserLogin> {
       controller: emailController,
       validator: (value) {
         if (value!.isEmpty) {
-          return 'Please enter your email';
+          return 'Enter your email';
         }
         if (!RegExp('^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]').hasMatch(value)) {
-          return 'Please enter a valide email';
+          return 'Enter a valide email';
         }
         return null;
       },
@@ -74,10 +74,10 @@ class _UserLoginState extends State<UserLogin> {
       validator: (value) {
         RegExp regex = RegExp(r'^.{6,}$');
         if (value!.isEmpty) {
-          return 'Please enter your password';
+          return 'Enter your password';
         }
         if (!regex.hasMatch(value)) {
-          return 'Please enter valid password(min. 6 character)';
+          return 'Enter a valid password(min. 6 character)';
         }
         return null;
       },

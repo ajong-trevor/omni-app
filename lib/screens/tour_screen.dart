@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter_plus/webview_flutter_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 import '../providers/tours_provider.dart';
+import '../helpers/getx_switch_state.dart';
 import './user_transaction_screen.dart';
 
 class TourScreen extends StatefulWidget {
@@ -18,13 +20,14 @@ class TourScreen extends StatefulWidget {
 }
 
 class _TourScreenState extends State<TourScreen> {
-  var _isInit = true;
-  var _isLoading = false;
+  // var _isInit = true;
+  // var _isLoading = false;
   var showAlert = false;
   bool? paymentStatus;
-  static const maxSecond = 125;
+  static const maxSecond = 30;
   int seconds = maxSecond;
   Timer? timer;
+  final GetXSwitchState getXSwitchState = Get.put(GetXSwitchState());
 
   @override
   void initState() {
@@ -54,9 +57,10 @@ class _TourScreenState extends State<TourScreen> {
 
   void stopTimer() {
     timer?.cancel();
-    if (seconds == 0) {
+    if ((seconds == 0) && (getXSwitchState.isSwitched == false)) {
       setState(() {
         showAlert = true;
+        getXSwitchState.isFreeTrialOver = true;
       });
       print('show alert box');
     }

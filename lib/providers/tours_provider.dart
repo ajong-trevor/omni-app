@@ -14,7 +14,7 @@ class ToursProvider with ChangeNotifier {
       location: 'Buea',
       url: 'assets/images/GBlock-UB.jpg',
       isPaid: false,
-      tourUrl: 'https://test-hosting-8c73e.firebaseapp.com/',
+      tourUrl: 'https://omni-tour.web.app',
       description:
           'Uinveristy of Buea description Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae dolor tenetur saepe, voluptatum voluptatibus architecto, odio ad dolore ab quas corporis, nostrum hic quo quis deserunt cumque consectetur. Voluptates ipsum tempora omnis cumque voluptatibus corrupti similique nobis saepe vitae magnam possimus modi quia nesciunt incidunt delectus totam enim illum et neque est nulla, aperiam harum ducimus! Numquam nemo aliquam dolores consequuntur id expedita, error possimus aliquid quibusdam voluptatem rem cumque explicabo magni maiores nulla obcaecati eos sed illum cupiditate recusandae quo maxime commodi culpa consequatur! Reprehenderit asperiores iusto inventore! Autem quidem assumenda dolorem magnam, nostrum quisquam aspernatur aperiam omnis asperiores.',
     ),
@@ -25,6 +25,7 @@ class ToursProvider with ChangeNotifier {
     //   location: 'Buea',
     //   url: 'assets/images/GBlock-UB.jpg',
     //   isPaid: false,e.firebaseapp.com/',
+    //   tourUrl: 'https://test-hosting-8c73e.firebaseapp.com/',
     //   description:
     //       'Unmanned Vehicle Laboratory description Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae dolor tenetur saepe, voluptatum voluptatibus architecto, odio ad dolore ab quas corporis, nostrum hic quo quis deserunt cumque consectetur. Voluptates ipsum tempora omnis cumque voluptatibus corrupti similique nobis saepe vitae magnam possimus modi quia nesciunt incidunt delectus totam enim illum et neque est nulla, aperiam harum ducimus! Numquam nemo aliquam dolores consequuntur id expedita, error possimus aliquid quibusdam voluptatem rem cumque explicabo magni maiores nulla obcaecati eos sed illum cupiditate recusandae quo maxime commodi culpa consequatur! Reprehenderit asperiores iusto inventore! Autem quidem assumenda dolorem magnam, nostrum quisquam aspernatur aperiam omnis asperiores.',
     // ),
@@ -63,6 +64,7 @@ class ToursProvider with ChangeNotifier {
   void togglePayment() {
     _items.forEach((element) {
       element.isPaid = !element.isPaid;
+      print("${element.isPaid} from the toggle function");
     });
     notifyListeners();
   }

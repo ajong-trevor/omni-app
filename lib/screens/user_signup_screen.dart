@@ -45,10 +45,10 @@ class _UserSignupScreenState extends State<UserSignupScreen> {
       validator: (value) {
         RegExp regex = RegExp(r'^.{3,}$');
         if (value!.isEmpty) {
-          return 'First Name field cannot be empty';
+          return 'Enter your first name';
         }
         if (!regex.hasMatch(value)) {
-          return 'Please enter valid name(min. 3 character)';
+          return 'Enter a valid first name(min. 3 character)';
         }
         return null;
       },
@@ -73,7 +73,7 @@ class _UserSignupScreenState extends State<UserSignupScreen> {
       keyboardType: TextInputType.name,
       validator: (value) {
         if (value!.isEmpty) {
-          return 'Last Name field cannot be empty';
+          return 'Enter your last name';
         }
         return null;
       },
@@ -98,10 +98,10 @@ class _UserSignupScreenState extends State<UserSignupScreen> {
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
         if (value!.isEmpty) {
-          return 'Please enter your email';
+          return 'Enter your email';
         }
         if (!RegExp('^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]').hasMatch(value)) {
-          return 'Please enter a valide email';
+          return 'Enter a valide email';
         }
         return null;
       },
@@ -127,7 +127,7 @@ class _UserSignupScreenState extends State<UserSignupScreen> {
       validator: (value) {
         RegExp regex = RegExp(r'^.{9,9}$');
         if (value!.isEmpty) {
-          return 'Phone number is required';
+          return 'Enter your phone number';
         }
         if (!regex.hasMatch(value)) {
           return 'Phone number must be 9 digits';
@@ -192,10 +192,10 @@ class _UserSignupScreenState extends State<UserSignupScreen> {
       validator: (value) {
         RegExp regex = RegExp(r'^.{6,}$');
         if (value!.isEmpty) {
-          return 'Please enter your password';
+          return 'Enter your password';
         }
         if (!regex.hasMatch(value)) {
-          return 'Please enter valid password (min. 6 character)';
+          return 'Enter a valid password (min. 6 character)';
         }
         return null;
       },
@@ -220,7 +220,7 @@ class _UserSignupScreenState extends State<UserSignupScreen> {
       obscureText: true,
       validator: (value) {
         if (value!.isEmpty) {
-          return "Please confirm password";
+          return "Confirm password";
         }
         if (value != passwordEditingController.text) {
           return "Password don't match";
@@ -278,7 +278,7 @@ class _UserSignupScreenState extends State<UserSignupScreen> {
                 )
               ])
             : const Text(
-                'Signup',
+                'Sign up',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
